@@ -6,12 +6,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const SECRET = "supersecretkey"; // in production, use env variable
+const SECRET = "supersecretkey"; 
 
-// Mock users
 const users = [{ id: 1, username: "admin", password: "password" }];
 
-// Login endpoint -> issues JWT
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   const user = users.find(u => u.username === username && u.password === password);
@@ -22,7 +20,6 @@ app.post("/login", (req, res) => {
   res.json({ token });
 });
 
-// Protected route
 app.get("/profile", (req, res) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -34,4 +31,4 @@ app.get("/profile", (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log("✅ Server running on http://localhost:3000"));
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));

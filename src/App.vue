@@ -7,7 +7,6 @@ const password = ref("")
 const token = ref(localStorage.getItem("token") || "")
 const profile = ref(null)
 
-// reactive state for error popup
 const errorMessage = ref("")
 const showError = ref(false)
 
@@ -24,7 +23,7 @@ const login = async () => {
   } catch (err) {
     errorMessage.value = "Invalid username or password!"
     showError.value = true
-    setTimeout(() => (showError.value = false), 3000) // auto-hide after 3s
+    setTimeout(() => (showError.value = false), 3000)
   }
 }
 
@@ -50,7 +49,7 @@ const logout = () => {
 
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-100 relative">
-    <!-- Error Popup -->
+
     <transition name="fade">
       <div
         v-if="showError"
@@ -60,7 +59,6 @@ const logout = () => {
       </div>
     </transition>
 
-    <!-- LOGIN FORM -->
     <div v-if="!token" class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-sm">
       <h2 class="text-2xl font-bold mb-6 text-center text-gray-700">Login</h2>
       
@@ -93,7 +91,6 @@ const logout = () => {
       </form>
     </div>
 
-    <!-- AUTHENTICATED VIEW -->
     <div v-else class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
       <h2 class="text-2xl font-bold mb-6 text-center text-green-600">Authenticated!</h2>
 
